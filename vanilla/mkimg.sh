@@ -3,9 +3,9 @@ set -eu
 #set -x
 
 
-variant=${variant:-immortalwrt}
+variant=${variant:-openwrt}
 variant=${variant,,}
-openwrtver=${openwrtver:-25.12.0}
+openwrtver=${openwrtver:-25.12.5}
 openwrtver=${openwrtver,,}
 
 model=${model:-x60-new-ubi}

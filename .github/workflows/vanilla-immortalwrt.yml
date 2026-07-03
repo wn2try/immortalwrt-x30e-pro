@@ -6,11 +6,11 @@ on:
     inputs: 
       variant:
         description: ImmortalWrt or OpenWrt 
-        default: immortalwrt
+        default: openwrt
         required: true
       openwrtver:
         description: Version Number (snapshot/25.12.0)
-        default: 25.12.0
+        default: 25.12.5
         required: true
       model:
         description: Device Model (x60-new-ubi/x30e-pro-ubi)
@@ -32,6 +32,7 @@ on:
 jobs:
   Build-and-Release-ImmortalWrt:
     runs-on: ubuntu-24.04
+    env: variant: ${{inputs.variant}}
 
     steps:
     - name: Checkout this repository
@@ -47,7 +48,7 @@ jobs:
     - name: Execute the script to build images
       run: |
         echo "export input variables..."
-        export variant=${{inputs.variant}} openwrtver=${{inputs.openwrtver}} \
+        export variant=$variant openwrtver=${{inputs.openwrtver}} \
           model=${{inputs.model}} vendor=${{inputs.vendor}} \
           pkgadd="${{inputs.pkgadd}}" pkgremove="${{inputs.pkgremove}}"
 
@@ -70,6 +71,9 @@ jobs:
         releasetag=$(date +"%Y%m%dT%H%M")_${{inputs.model}}
         echo "RELEASE_TAG=$releasetag" | tee -a $GITHUB_ENV
 
+        variant=$(echo ${variant^} | tr 'w' 'W')
+        echo "variant=$variant" | tee -a $GITHUB_ENV
+
     - name: Release artifacts
       uses: ncipollo/release-action@v1
       with:
@@ -78,6 +82,6 @@ jobs:
         artifacts: vanilla/release/*
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          - ImmortalWrt (vanilla): `${{env.IMOWRT_VER}} ~ ${{env.VER_CODE}}`
+          - ${{env.variant}} (vanilla): `${{env.IMOWRT_VER}} ~ ${{env.VER_CODE}}`
           - Kernel: `${{env.KERNEL_VER}}`
           - Default IP: `192.168.1.1`
