@@ -32,8 +32,8 @@ on:
 jobs:
   Build-and-Release-ImmortalWrt:
     runs-on: ubuntu-24.04
-    env: variant: ${{inputs.variant}}
-
+    env: 
+      variant: ${{inputs.variant}}
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v6
