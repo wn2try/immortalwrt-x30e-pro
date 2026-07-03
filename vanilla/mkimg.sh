@@ -197,7 +197,7 @@ gzip -1f ${firmwarenm}.itb
 gzip -1f ${initramfsnm}.itb
 
 mv ${outdir}/*${model}.manifest ./${variant}-${openwrtver}-${model}.manifest
-mv ${outdir}/profiles.json .
+mv ${outdir}/profiles.json ./${variant}-${openwrtver}-${model}-profiles.json
 
 ## the end
 echo -e "\nfiles created:"
