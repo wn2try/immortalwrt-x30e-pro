@@ -1,15 +1,15 @@
-name: Vanilla ImmortalWrt - X60 New/X30E Pro (UBI)
+name: Vanilla OpenWrt - X60 New/X30E Pro (UBI)
 
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs: 
       variant:
-        description: ImmortalWrt or OpenWrt 
+        description: OpenWrt or ImmortalWrt (openwrt/immortalwrt)
         default: openwrt
         required: true
       openwrtver:
-        description: Version Number (snapshot/25.12.0)
+        description: Version Number (snapshot/25.12.5)
         default: 25.12.5
         required: true
       model:
@@ -30,7 +30,7 @@ on:
         required: false
 
 jobs:
-  Build-and-Release-ImmortalWrt:
+  Build-and-Release-OpenWrt:
     runs-on: ubuntu-24.04
     env: 
       variant: ${{inputs.variant}}
