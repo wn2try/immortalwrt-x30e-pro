@@ -22,11 +22,11 @@ on:
         required: true
       pkgadd:
         description: Packages to Add
-        default: autocore default-settings-chn luci htop nano openssh-sftp-server luci-i18n-upnp-zh-cn luci-i18n-firewall-zh-cn luci-i18n-package-manager-zh-cn
+        default: 
         required: false
       pkgremove:
         description: Packages to Remove
-        default: block-mount
+        default: 
         required: false
 
 jobs:

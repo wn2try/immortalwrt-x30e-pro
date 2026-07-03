@@ -1,0 +1,4 @@
+add: autocore default-settings-chn luci htop nano openssh-sftp-server luci-i18n-upnp-zh-cn luci-i18n-firewall-zh-cn luci-i18n-package-manager-zh-cn
+
+
+remove: block-mount

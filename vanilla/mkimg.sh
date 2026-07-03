@@ -131,17 +131,24 @@ outdir=${rootpath}/builder/_output
 
 ## build sysupgrade.itb
 echo -e "\nbuild sysupgrade.itb..."
+
+# apks
 [[ "$pkgremove" ]] && ! $(echo "$pkgremove" | grep -qE '^-| -') && \
 pkgremove=$(echo "$pkgremove" | sed "s/ / -/g; s/^/-/")
 
-echo "pkgadd=${pkgadd}"
-echo "pkgremove=${pkgremove}"
+pkgpath=${rootpath}/apk/apk.${variant}
+pkgadd1=$(sed -n '/^add:/ {s/add: //; p;}' ${pkgpath})
+pkgremove1=$(sed -n '/^remove:/ {s/ / -/g; s/remove: //; p;}' ${pkgpath})
 
+echo "pkgadd=${pkgadd} ${pkgadd1}"
+echo "pkgremove=${pkgremove} ${pkgremove1}"
+
+# build
 make image \
 PROFILE="${device}" \
 FILES="files" \
 BIN_DIR="${outdir}" \
-PACKAGES="${pkgadd} ${pkgremove}"
+PACKAGES="${pkgadd} ${pkgadd1} ${pkgremove} ${pkgremove1}"
 
 
 ## create initramfs.itb
