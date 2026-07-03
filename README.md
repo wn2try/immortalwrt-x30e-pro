@@ -6,8 +6,8 @@ ImmortalWrt 25.12 with MTK HNAT enabled
 - build from source: https://github.com/chasey-dev/immortalwrt-mt798x-rebase  
 <br>
 
-Vanilla ImmortalWrt  
-- build via `Image Builder`: https://downloads.immortalwrt.org  
+Vanilla OpenWrt/ImmortalWrt  
+- build via `Image Builder`: https://downloads.openwrt.org , https://downloads.immortalwrt.org  
 
 <br><br>
 
