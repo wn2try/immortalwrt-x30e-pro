@@ -14,9 +14,21 @@ uci set luci.main.lang='zh_cn'
 uci commit luci
 
 
+# enable HFO
+uci set firewall.@defaults[0].flow_offloading='1'
+uci set firewall.@defaults[0].flow_offloading_hw='1'
+uci commit firewall
+
+
+# enable upnpd
+uci set upnpd.config.enabled='1'
+uci commit upnpd
+
+
 # feeds
 sed -E -e '/routing|telephony|video/s/^/#/' \
     -e 's|mirrors.vsean.net/openwrt|downloads.immortalwrt.org|' \
     -i /etc/apk/repositories.d/distfeeds.list
+
 
 exit 0
